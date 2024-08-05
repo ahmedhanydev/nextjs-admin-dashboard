@@ -1,16 +1,15 @@
-import { GetServerSidePropsContext } from "next";
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  return {
-    redirect: {
-      destination: "/dashboard",
-      permanent: false,
-    },
-  };
-}
+"use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
-  return null; // This component won't actually render
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/dashboard");
+  }, [router]);
+
+  return null; // Optionally, you can return a loading indicator here
 };
 
 export default Home;
