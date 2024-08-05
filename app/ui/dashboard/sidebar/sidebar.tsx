@@ -13,6 +13,7 @@ import {
   MdHelpCenter,
   MdLogout,
 } from "react-icons/md";
+import { auth, signOut } from "@/app/auth";
 
 const menuItems = [
   {
@@ -76,19 +77,26 @@ const menuItems = [
     ],
   },
 ];
-const Sidebar = () => {
+
+type Session = {
+  username?: string;
+  img?: string;
+};
+const Sidebar = async () => {
+  const { user } = (await auth()) as { user: Session };
+  // console.log(user);
   return (
     <div className={styles.container}>
       <div className={styles.user}>
         <Image
           className={styles.userImage}
-          src="/noavatar.png"
+          src={user.img || "/noavatar.png"}
           alt=""
           width="50"
           height="50"
         />
         <div className={styles.userInfo}>
-          <span className={styles.username}>Ahmed Mohamed</span>
+          <span className={styles.username}>{user.username}</span>
           <span className={styles.userTitle}>Administration</span>
         </div>
       </div>
@@ -96,16 +104,24 @@ const Sidebar = () => {
         {menuItems.map((cat) => (
           <li key={cat.title}>
             <span className={styles.cat}>{cat.title}</span>
+
             {cat.list.map((item) => (
               <MenuLink key={item.title} item={item} />
             ))}
           </li>
         ))}
       </ul>
-      <button className={styles.logout}>
-        <MdLogout />
-        Logout
-      </button>
+      <form
+        action={async () => {
+          "use server";
+          await signOut();
+        }}
+      >
+        <button className={styles.logout}>
+          <MdLogout />
+          <span className={styles.logoutText}> Logout</span>
+        </button>
+      </form>
     </div>
   );
 };

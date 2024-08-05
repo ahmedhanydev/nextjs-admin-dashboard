@@ -46,3 +46,28 @@
   display: flex;
   gap: 20px;
 }
+
+/* Responsive CSS Here */
+@media screen and (max-width: 950px) {
+}
+
+@media screen and (max-width: 780px) {
+  .container {
+    padding: 10px;
+  }
+  .search {
+    width: 60%;
+    padding: 5px;
+    gap: 0;
+  }
+  .icons {
+    gap: 0px;
+  }
+  .title {
+    margin-right: 10px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+}

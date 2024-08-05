@@ -36,3 +36,26 @@
 .side {
   flex: 1;
 }
+
+@media screen and (max-width: 950px) {
+  .menu {
+    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .cards {
+    flex-direction: column;
+  }
+  .wrapper {
+    flex-direction: column;
+  }
+  .content {
+    padding: 5px;
+    flex: 1;
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 490px) {
+}

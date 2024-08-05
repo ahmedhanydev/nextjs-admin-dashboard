@@ -9,16 +9,15 @@ const Pagination = ({ count }: Props) => {
   const { replace } = useRouter();
   const pathname = usePathname();
 
-  const page = searchParams.get("page") || 1;
+  const page = Number(searchParams.get("page")) || 1;
   const params = new URLSearchParams(searchParams);
   const itemsPerPage = 2;
-  const hasPrev = itemsPerPage * (parseInt(page) - 1) > 0;
-  const hasNext = itemsPerPage * (parseInt(page) - 1) + itemsPerPage < count;
+  const hasPrev = itemsPerPage * (page - 1) > 0;
+  const hasNext = itemsPerPage * (page - 1) + itemsPerPage < count;
 
-  const handleChangePage = (type) => {
-    type === "previous"
-      ? params.set("page", parseInt(page) - 1)
-      : params.set("page", parseInt(page) + 1);
+  const handleChangePage = (type: string) => {
+    const newPage = type === "previous" ? page - 1 : page + 1;
+    params.set("page", newPage.toString());
     replace(`${pathname}?${params}`);
   };
   return (

@@ -57,3 +57,25 @@
 .cancelled {
   background-color: #f7737375;
 }
+
+@media screen and (max-width: 950px) {
+}
+
+@media screen and (max-width: 780px) {
+  .container {
+    padding: 0;
+  }
+  .title {
+    font-size: 14px;
+    padding: 10px 0 0 10px;
+  }
+  .table td,
+  .pending,
+  .done,
+  .cancelled {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+}

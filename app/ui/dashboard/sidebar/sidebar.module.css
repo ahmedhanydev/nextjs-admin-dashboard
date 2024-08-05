@@ -37,6 +37,7 @@
 
 .cat {
   color: var(--textSoft);
+
   font-weight: bold;
   font-size: 13px;
   margin: 10px 0px;
@@ -62,4 +63,41 @@
 
 .logout:hover {
   background-color: #2e374a;
+}
+
+/* Responsive CSS Here */
+@media screen and (max-width: 950px) {
+  .user {
+    flex-direction: column;
+    align-items: start;
+  }
+  .cat {
+    display: none;
+  }
+  .logoutText {
+    display: none;
+  }
+  .userTitle {
+    font-size: 8px;
+  }
+  .list {
+    padding: 0;
+  }
+  .logout {
+    justify-content: center;
+    align-items: center;
+  }
+  .username {
+    font-size: 8px;
+  }
+  .userInfo {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 780px) {
+}
+
+@media screen and (max-width: 490px) {
 }

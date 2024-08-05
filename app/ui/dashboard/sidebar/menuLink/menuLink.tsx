@@ -22,7 +22,7 @@ const MenuLink = ({ item }: Props) => {
       }`}
     >
       {item.icon}
-      {item.title}
+      <span className={styles.title}> {item.title}</span>
     </Link>
   );
 };

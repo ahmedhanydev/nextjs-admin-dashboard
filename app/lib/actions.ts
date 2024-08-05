@@ -4,13 +4,16 @@ import { Product, User } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
-export const createUser = async (formData) => {
+import { signIn } from "../auth";
+import AuthError from "next-auth";
+export const createUser = async (formData: FormData) => {
   const { username, email, password, phone, address, isAdmin, isActive } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
     const slat = await bcrypt.genSalt(10);
+    const password = formData.get("password") as string; // Extract the password as a string
     const hashed = await bcrypt.hash(password, slat);
 
     const newUser = new User({
@@ -32,13 +35,13 @@ export const createUser = async (formData) => {
   revalidatePath("/dashboard/users");
   redirect("/dashboard/users");
 };
-export const updateUser = async (formData) => {
+export const updateUser = async (formData: FormData) => {
   const { id, username, email, password, phone, address, isAdmin, isActive } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
-    const updateFields = {
+    const updateFields: { [key: string]: FormDataEntryValue | undefined } = {
       username,
       email,
       password,
@@ -62,7 +65,7 @@ export const updateUser = async (formData) => {
   revalidatePath("/dashboard/users");
   redirect("/dashboard/users");
 };
-export const deleteUser = async (formData) => {
+export const deleteUser = async (formData: FormData) => {
   const { id } = Object.fromEntries(formData);
 
   try {
@@ -75,7 +78,7 @@ export const deleteUser = async (formData) => {
 
   revalidatePath("/dashboard/users");
 };
-export const createProduct = async (formData) => {
+export const createProduct = async (formData: FormData) => {
   const { title, desc, price, stock, img, color, size } =
     Object.fromEntries(formData);
 
@@ -101,13 +104,13 @@ export const createProduct = async (formData) => {
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
 };
-export const updateProduct = async (formData) => {
+export const updateProduct = async (formData: FormData) => {
   const { id, title, desc, price, stock, img, color, size } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
-    const updateFields = {
+    const updateFields: { [key: string]: FormDataEntryValue | undefined } = {
       title,
       desc,
       price,
@@ -116,6 +119,7 @@ export const updateProduct = async (formData) => {
       color,
       size,
     };
+
     Object.keys(updateFields).forEach((key) => {
       if (updateFields[key] === "" || updateFields[key] === undefined) {
         delete updateFields[key];
@@ -131,7 +135,7 @@ export const updateProduct = async (formData) => {
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
 };
-export const deleteProduct = async (formData) => {
+export const deleteProduct = async (formData: FormData) => {
   const { id } = Object.fromEntries(formData);
 
   try {
@@ -143,4 +147,21 @@ export const deleteProduct = async (formData) => {
   }
 
   revalidatePath("/dashboard/products");
+};
+
+export const authenticate = async (
+  prevState: string | undefined,
+  formData: FormData
+) => {
+  const { username, password } = Object.fromEntries(formData);
+
+  try {
+    await signIn("credentials", { username, password });
+  } catch (error) {
+    if ((error as typeof AuthError).name === "CredentialsSignin") {
+      return "Invalid credentials";
+    }
+
+    throw error;
+  }
 };

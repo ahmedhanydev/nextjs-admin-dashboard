@@ -59,3 +59,55 @@
 .delete {
   background-color: crimson;
 }
+
+@media (max-width: 768px) {
+  .table {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+  }
+  .table thead tr {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-right: 10px;
+  }
+  .table thead tr td:nth-child(1) {
+    padding-bottom: 23px;
+    margin-top: -13px;
+  }
+  .table thead tr td {
+    font-size: 10px;
+    width: 100%;
+    padding: 10px 0;
+  }
+  .table tbody {
+    width: 60%;
+    position: relative;
+    overflow-x: auto;
+    /* overflow-y: hidden; */
+  }
+  .table thead th {
+    text-align: left;
+    border-bottom: 1px solid #f7f7f9;
+  }
+  .table tbody tr {
+    display: table-cell;
+    padding-right: 20px;
+    width: 100%;
+  }
+
+  .table tbody td {
+    display: block;
+    font-size: 10px;
+    padding: 10px 0;
+  }
+
+  .button {
+    font-size: 10px;
+  }
+  .addButton {
+    font-size: 12px;
+  }
+}

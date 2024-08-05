@@ -21,3 +21,26 @@
 .active {
   background-color: #2e374a;
 }
+
+@media screen and (max-width: 950px) {
+  .container {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .container {
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  .title {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .title {
+    display: none;
+  }
+}

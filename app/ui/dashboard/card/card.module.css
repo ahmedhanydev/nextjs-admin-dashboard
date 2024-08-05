@@ -33,3 +33,28 @@
 .negative {
   color: red;
 }
+
+@media screen and (max-width: 950px) {
+}
+
+@media screen and (max-width: 780px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .texts {
+    text-align: center;
+  }
+
+  .number {
+    font-size: 18px;
+  }
+
+  .detail {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+}

@@ -15,14 +15,14 @@ const AddUserPage = () => {
         />
         <input type="phone" placeholder="phone" name="phone" />
         <select name="isAdmin" id="isAdmin">
-          <option value={false}>Is Admin?</option>
-          <option value={true}>Yes</option>
-          <option value={false}>No</option>
+          <option value={false.toString()}>Is Admin?</option>
+          <option value={true.toString()}>Yes</option>
+          <option value={false.toString()}>No</option>
         </select>
         <select name="isActive" id="isActive">
-          <option value={true}>Is Active?</option>
-          <option value={true}>Yes</option>
-          <option value={false}>No</option>
+          <option value={true.toString()}>Is Active?</option>
+          <option value={true.toString()}>Yes</option>
+          <option value={false.toString()}>No</option>
         </select>
         <textarea
           name="address"

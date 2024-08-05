@@ -5,11 +5,14 @@ import Image from "next/image";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import { fetchUsers } from "./../../lib/data";
 import { deleteUser } from "@/app/lib/actions";
-type Props = {
-  searchParams: URLSearchParams;
-};
-const UsersPage = async ({ searchParams }: Props) => {
-  const q = searchParams?.q || "";
+type CustomSearchParams = URLSearchParams & { q: string; page?: number };
+const UsersPage = async ({
+  searchParams,
+}: {
+  searchParams: CustomSearchParams;
+}) => {
+  // Access the 'q' property safely
+  const q = searchParams.q;
   const page = searchParams?.page || 1;
   const { count, users } = await fetchUsers(q, page);
 
@@ -21,6 +24,7 @@ const UsersPage = async ({ searchParams }: Props) => {
           <button className={styles.addButton}>Add New</button>
         </Link>
       </div>
+      <div className={styles.tableContainer}></div>
       <table className={styles.table}>
         <thead>
           <tr>
