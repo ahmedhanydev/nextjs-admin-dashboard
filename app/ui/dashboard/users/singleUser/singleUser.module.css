@@ -60,3 +60,18 @@
   cursor: pointer;
   margin-top: 20px;
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form input,
+  .form select,
+  .form textarea,
+  .form button {
+    width: 100%;
+    padding: 10px;
+  }
+}

@@ -9,9 +9,13 @@ import {
 } from "react-icons/md";
 const Navbar = () => {
   const pathname = usePathname();
+  const lastSegment = pathname.split("/").pop() as string;
+  const isIDPattern = /^[a-f0-9]{24}$/i.test(lastSegment);
   return (
     <div className={styles.container}>
-      <div className={styles.title}>{pathname.split("/").pop()}</div>
+      {!isIDPattern && lastSegment !== undefined && (
+        <div className={styles.title}>{lastSegment}</div>
+      )}
       <div className={styles.menu}>
         <div className={styles.search}>
           <MdSearch />

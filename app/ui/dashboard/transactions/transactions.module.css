@@ -73,7 +73,7 @@
   .pending,
   .done,
   .cancelled {
-    font-size: 10px;
+    font-size: 8px;
   }
 }
 
