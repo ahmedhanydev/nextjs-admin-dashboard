@@ -11,7 +11,7 @@ Design
 
 - Layout: Well-structured layout with sidebar, navbar, dashboard, and rightbar components.
 ## Technology Stack
-- Frontend: Next.js, Tailwind CSS
+- Frontend: Next.js, CSS
 - Database: MongoDB
 - Authentication: Next-Auth
 - State Management: useFormState hook
